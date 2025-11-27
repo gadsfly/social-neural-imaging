@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Neural Imaging | Qi Lab @ Duke</title>
+    <title>SocialCa3D | 3D Pose + Ca²⁺ Imaging in Social Mice</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --color-bg: #faf9f7;
-            --color-bg-alt: #f0eeeb;
+            --color-bg: #fefefe;
             --color-text: #1a1a1a;
-            --color-text-muted: #555;
-            --color-accent: #003366; /* Duke blue-ish */
-            --color-accent-light: #e8eef4;
-            --color-border: #ddd;
-            --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'Source Sans 3', -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-            --max-width: 920px;
-            --spacing-section: 5rem;
+            --color-text-secondary: #555;
+            --color-accent: #2563eb;
+            --color-accent-hover: #1d4ed8;
+            --color-border: #e5e5e5;
+            --color-surface: #f8f9fa;
+            --font-display: 'Newsreader', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --max-width: 900px;
+            --section-gap: 5rem;
         }
 
         * {
@@ -45,46 +44,37 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Layout */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
 
         section {
-            padding: var(--spacing-section) 0;
+            padding: var(--section-gap) 0;
+        }
+
+        section + section {
+            border-top: 1px solid var(--color-border);
         }
 
         /* Typography */
-        h1, h2, h3 {
+        h1, h2 {
             font-family: var(--font-display);
             font-weight: 400;
-            line-height: 1.25;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 4.5vw, 2.8rem);
-            letter-spacing: -0.01em;
-            margin-bottom: 1.25rem;
+            line-height: 1.3;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             margin-bottom: 1.25rem;
-            color: var(--color-accent);
-            border-left: 3px solid var(--color-accent);
-            padding-left: 0.75rem;
-        }
-
-        h3 {
-            font-size: 1.15rem;
-            margin-bottom: 0.75rem;
-            margin-top: 1.5rem;
             color: var(--color-text);
         }
 
         p {
             margin-bottom: 1rem;
+            color: var(--color-text-secondary);
         }
 
         p:last-child {
@@ -93,189 +83,125 @@
 
         a {
             color: var(--color-accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: opacity 0.2s;
+            text-decoration: none;
         }
 
         a:hover {
-            opacity: 0.7;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(250, 249, 247, 0.97);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 100;
-            padding: 0.9rem 0;
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        nav .logo {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            text-decoration: none;
-            color: var(--color-text);
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            flex-shrink: 0;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--color-accent);
-            opacity: 1;
+            text-decoration: underline;
         }
 
         /* Hero */
         .hero {
-            padding: 4rem 0 3rem;
-            border-bottom: 1px solid var(--color-border);
+            padding: 3.5rem 0 4rem;
+            text-align: center;
         }
 
-        .hero-label {
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 0.9rem;
+            border-radius: 100px;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-badge::before {
+            content: "◆";
+            font-size: 0.6rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            max-width: 620px;
+            margin: 0 auto 1.75rem;
         }
 
         .hero-meta {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--color-border);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1.75rem;
         }
 
-        .hero-authors {
-            font-size: 1.05rem;
-            margin-bottom: 0.35rem;
-        }
-
-        .hero-affiliation {
-            color: var(--color-text-muted);
-            font-style: italic;
-            font-size: 0.95rem;
+        .hero-meta a {
+            color: var(--color-text);
+            font-weight: 500;
         }
 
         .hero-links {
             display: flex;
+            justify-content: center;
             gap: 0.75rem;
-            margin-top: 1.75rem;
             flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            padding: 0.6rem 1.1rem;
-            background: var(--color-accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
+            gap: 0.5rem;
+            padding: 0.65rem 1.2rem;
+            border-radius: 6px;
             font-weight: 500;
             font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
         }
 
-        .btn:hover {
-            opacity: 1;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.25);
+        .btn-primary {
+            background: var(--color-text);
+            color: white;
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--color-accent);
-            border: 1.5px solid var(--color-accent);
+        .btn-primary:hover {
+            background: #333;
+            text-decoration: none;
         }
 
-        .btn-outline:hover {
-            background: var(--color-accent-light);
-        }
-
-        .btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .hero-note {
-            margin-top: 1.25rem;
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            font-style: italic;
-        }
-
-        /* Abstract */
-        .abstract {
-            background: var(--color-bg-alt);
-        }
-
-        .abstract-text {
-            font-size: 1.02rem;
-            color: var(--color-text-muted);
-            line-height: 1.75;
-        }
-
-        /* Stats grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.25rem 1rem;
-            border-radius: 6px;
-            text-align: center;
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
             border: 1px solid var(--color-border);
         }
 
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--color-accent);
-            line-height: 1;
-            margin-bottom: 0.35rem;
+        .btn-secondary:hover {
+            background: #eee;
+            text-decoration: none;
         }
 
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+        /* Hero Figure */
+        .hero-figure {
+            margin-top: 2.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .hero-figure img {
+            width: 100%;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* Section styling */
+        .section-intro {
+            max-width: 720px;
+            margin-bottom: 1.75rem;
         }
 
         /* Figures */
@@ -285,729 +211,554 @@
 
         .figure img {
             width: 100%;
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 8px;
         }
 
         .figure-caption {
-            margin-top: 0.75rem;
             font-size: 0.88rem;
-            color: var(--color-text-muted);
+            color: var(--color-text-secondary);
+            margin-top: 0.6rem;
             font-style: italic;
         }
 
-        .figure-placeholder {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--color-bg-alt) 0%, #e5e3df 100%);
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-muted);
-            font-size: 0.85rem;
-            border: 2px dashed var(--color-border);
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .figure-placeholder-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-            opacity: 0.5;
-        }
-
-        /* Methods */
-        .methods-grid {
+        /* Two column figures */
+        .figure-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        .method-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid var(--color-border);
+        @media (max-width: 700px) {
+            .figure-row {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .method-card h3 {
-            color: var(--color-accent);
-            margin-top: 0;
-            margin-bottom: 0.6rem;
-            font-size: 1.05rem;
-        }
-
-        .method-card p {
-            font-size: 0.92rem;
-            color: var(--color-text-muted);
+        .figure-row .figure {
             margin: 0;
         }
 
-        /* Directory tree */
-        .directory-tree {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1.25rem 1.5rem;
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            line-height: 1.7;
-            overflow-x: auto;
-            margin: 1.5rem 0;
+        /* Stats banner */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1.75rem 0;
         }
 
-        .directory-tree .folder {
-            color: #4fc1ff;
+        @media (max-width: 600px) {
+            .stats-banner {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        .directory-tree .file {
-            color: #9cdcfe;
+        .stat {
+            text-align: center;
         }
 
-        .directory-tree .comment {
-            color: #6a9955;
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: var(--color-text);
+            line-height: 1.2;
         }
 
-        /* Table */
-        table {
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        /* Full width figure */
+        .figure-full {
+            margin: 2.5rem 0;
+        }
+
+        .figure-full img {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            font-size: 0.92rem;
+            border-radius: 8px;
         }
 
-        th, td {
-            padding: 0.65rem 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        th {
-            font-weight: 600;
-            background: var(--color-bg-alt);
-        }
-
-        td:nth-child(3) {
-            color: var(--color-text-muted);
-        }
-
-        /* Poster section */
-        .poster-embed {
+        /* Pipeline section */
+        .pipeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 2.5rem;
+            align-items: start;
             margin-top: 1.5rem;
         }
 
-        .poster-embed img {
+        @media (max-width: 700px) {
+            .pipeline-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pipeline-figure img {
             width: 100%;
-            height: auto;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: box-shadow 0.2s;
+            border-radius: 8px;
         }
 
-        .poster-embed img:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-
-        .poster-embed iframe {
-            width: 100%;
-            height: 600px;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
-        }
-
-        .poster-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .poster-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .poster-list li:last-child {
-            border-bottom: none;
-        }
-
-        .poster-list strong {
-            color: var(--color-accent);
+        .pipeline-text p {
+            margin-bottom: 1rem;
         }
 
         /* Citation */
         .citation-block {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 1.25rem;
+            background: var(--color-surface);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            position: relative;
         }
 
         .citation-block pre {
-            font-family: var(--font-mono);
-            font-size: 0.82rem;
+            margin: 0;
             white-space: pre-wrap;
             word-break: break-word;
-            margin: 0;
         }
 
         .copy-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 1rem;
-            padding: 0.45rem 0.9rem;
-            background: #2d2d2d;
-            border: 1px solid #444;
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 0.4rem 0.75rem;
             border-radius: 4px;
-            font-family: var(--font-body);
             font-size: 0.8rem;
-            color: #ccc;
             cursor: pointer;
-            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--color-text-secondary);
+            transition: all 0.2s;
+            font-family: var(--font-body);
         }
 
         .copy-btn:hover {
-            background: #3d3d3d;
-        }
-
-        /* About section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .about-content {
-                grid-template-columns: 2fr 1fr;
-            }
-        }
-
-        .contact-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid var(--color-border);
-        }
-
-        .contact-card h3 {
-            margin-top: 0;
-            font-size: 1rem;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            font-size: 0.92rem;
+            background: var(--color-surface);
+            color: var(--color-text);
         }
 
         /* Footer */
         footer {
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             border-top: 1px solid var(--color-border);
             text-align: center;
-            color: var(--color-text-muted);
+        }
+
+        footer p {
+            font-size: 0.88rem;
+            color: var(--color-text-secondary);
+        }
+
+        footer a {
+            color: var(--color-text-secondary);
+        }
+
+        footer a:hover {
+            color: var(--color-text);
+        }
+
+        /* Coming soon callout */
+        .coming-soon {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1.1rem 1.4rem;
+            margin: 1.75rem 0;
+        }
+
+        .coming-soon-title {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .coming-soon p {
+            color: #1e40af;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Simple nav */
+        nav {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+
+        nav a {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
             font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--color-border);
         }
 
-        /* Section backgrounds */
-        .alt-bg {
-            background: var(--color-bg-alt);
+        nav a:hover {
+            text-decoration: none;
+            background: white;
         }
 
-        /* Responsive */
-        @media (max-width: 640px) {
-            :root {
-                --spacing-section: 3.5rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .hero-links {
-                flex-direction: column;
-            }
-
-            .btn {
-                justify-content: center;
-            }
+        /* Image grid */
+        .image-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin: 1.5rem 0;
         }
 
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (max-width: 600px) {
+            .image-grid-3 {
+                grid-template-columns: 1fr;
             }
         }
 
-        .hero > * {
-            animation: fadeUp 0.6s ease-out forwards;
-            opacity: 0;
+        .image-grid-3 img {
+            width: 100%;
+            border-radius: 6px;
         }
 
-        .hero > *:nth-child(1) { animation-delay: 0.05s; }
-        .hero > *:nth-child(2) { animation-delay: 0.1s; }
-        .hero > *:nth-child(3) { animation-delay: 0.15s; }
-        .hero > *:nth-child(4) { animation-delay: 0.2s; }
+        /* Arena + schematic side by side */
+        .system-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 700px) {
+            .system-overview {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .system-overview img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Video placeholder */
+        .video-container {
+            background: #0a0a0a;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+        }
+
+        .video-container video,
+        .video-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Poster preview */
+        .poster-preview {
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .poster-preview:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(0,0,0,0.16);
+        }
+
+        .poster-preview img {
+            width: 100%;
+            display: block;
+        }
     </style>
 </head>
 <body>
+
     <nav>
-        <div class="container">
-            <a href="#" class="logo">
-                <svg class="logo-icon" width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Mouse silhouette simplified -->
-                    <ellipse cx="50" cy="55" rx="30" ry="25" fill="#003366"/>
-                    <!-- Ears -->
-                    <circle cx="30" cy="35" r="12" fill="#003366"/>
-                    <circle cx="70" cy="35" r="12" fill="#003366"/>
-                    <!-- Neural activity waves -->
-                    <path d="M20 55 Q30 45, 40 55 Q50 65, 60 55 Q70 45, 80 55" stroke="#4a90d9" stroke-width="3" fill="none" stroke-linecap="round"/>
-                    <path d="M25 65 Q35 58, 45 65 Q55 72, 65 65 Q75 58, 85 65" stroke="#4a90d9" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
-                    <!-- Camera dots (representing 6 cameras) -->
-                    <circle cx="15" cy="20" r="4" fill="#4a90d9"/>
-                    <circle cx="85" cy="20" r="4" fill="#4a90d9"/>
-                    <circle cx="10" cy="50" r="4" fill="#4a90d9"/>
-                    <circle cx="90" cy="50" r="4" fill="#4a90d9"/>
-                    <circle cx="15" cy="80" r="4" fill="#4a90d9"/>
-                    <circle cx="85" cy="80" r="4" fill="#4a90d9"/>
-                </svg>
-                Social Neural Imaging
-            </a>
-            <ul>
-                <li><a href="#abstract">Abstract</a></li>
-                <li><a href="#dataset">Dataset</a></li>
-                <li><a href="#methods">Methods</a></li>
-                <li><a href="#poster">Poster</a></li>
-                <li><a href="#citation">Cite</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </div>
+        <a href="https://github.com/gadsfly/BBOP" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -3px; margin-right: 4px;">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+        </a>
     </nav>
 
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="hero-label">Multi-Modal Neuroscience Dataset</div>
+            <span class="hero-badge">Dataset & Paper Coming Soon</span>
             
-            <h1>A Scalable System for Social Neural Imaging: Integrating Multi-animal 3D Pose Tracking and Ca²⁺ Imaging in Freely Interacting Animals</h1>
+            <h1>SocialCa3D</h1>
+            <p class="hero-subtitle">
+                Multi-modal behavioral and neural recordings in freely interacting mice: 
+                3D pose tracking + Ca²⁺ imaging
+            </p>
             
-            <div class="hero-meta">
-                <p class="hero-authors">
-                    <strong>Lingxuan Qi</strong>, Renzhi Zhan, Tianqing Li, Anshuman Sabath, Joshua H. Wu, Timothy W. Dunn
-                </p>
-                <p class="hero-affiliation">
-                    Department of Biomedical Engineering, Duke University
-                </p>
-            </div>
+            <p class="hero-meta">
+                Lingxuan Qi, Renzhi Zhan, Tianqing Li, Anshuman Sabath, Joshua H. Wu, Timothy W. Dunn
+                <br>
+                <a href="https://www.tdunnlab.org/" target="_blank">t.Dunn Lab</a>, Duke University
+            </p>
 
             <div class="hero-links">
-                <a href="poster_sfn_2024.pdf" class="btn" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <a href="https://github.com/gadsfly/BBOP" class="btn btn-primary" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
-                    Poster (SfN 2024)
+                    BBOP Pipeline
                 </a>
-                <a href="https://github.com/gadsfly/social-neural-imaging" class="btn btn-outline" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    Code (GitHub)
-                </a>
-                <a href="#dataset" class="btn btn-outline">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                    Dataset
-                </a>
-                <!-- Uncomment when preprint is ready:
-                <a href="https://arxiv.org/abs/XXXX.XXXXX" class="btn btn-outline" target="_blank">
-                    Preprint
-                </a>
-                -->
+                <a href="#citation" class="btn btn-secondary">Cite This Work</a>
             </div>
 
-            <p class="hero-note">
-                Data release and preprint in preparation.
-            </p>
+            <div class="hero-figure">
+                <img src="images/system_schematic.png" alt="System schematic: six-camera arena with automated tether and miniscope setup for multi-animal 3D tracking">
+            </div>
+            <p class="hero-caption">Six-camera recording arena with automated tether system and UCLA Miniscope V4 for simultaneous 3D pose tracking and calcium imaging.</p>
         </div>
     </section>
 
-    <section id="abstract" class="abstract">
+    <!-- Abstract -->
+    <section id="abstract">
         <div class="container">
             <h2>Abstract</h2>
-            <p class="abstract-text">
-                Naturalistic social behavior emerges from interactions between distributed neural circuits and richly structured environments. Yet most publicly available resources either provide neural activity under highly constrained tasks or large-scale pose tracking without simultaneous neural recordings. We present a multi-modal dataset combining one-photon calcium imaging, six-camera 3D pose estimation, and rich metadata from freely behaving mice in a 1 m open arena. Adult male C57BL/6J mice explored the arena alone or in pairs while behavior was recorded at 30 Hz by six synchronized cameras. In a subset of sessions, layer 2/3 activity in visual cortex (V1) or motor/premotor cortex (M1/PMC) was recorded with a UCLA Miniscope V4. The current release comprises approximately 50 mice, 116 recording sessions, and 22 hours of video. For each session we provide raw multi-camera videos, 3D keypoint trajectories, calcium traces with ΔF/F normalization, and structured metadata. Preprocessing, synchronization, and quality control are implemented by an open-source pipeline (BBOP) with PyArrow/Parquet logs. This resource supports studies of naturalistic social behavior, neural encoding of spatial and social variables, and multi-animal pose estimation benchmarks.
-            </p>
-        </div>
-    </section>
-
-    <section id="motivation">
-        <div class="container">
-            <h2>Background & Motivation</h2>
-            
-            <p>
-                <strong>Prior work:</strong> social-DANNCE (sDANNCE) has mapped rich social behavior in rats, enabling detailed 3D kinematic analysis of freely interacting animals.
-            </p>
-            
-            <p>
-                <strong>The gap:</strong> Mice add unique challenges—smaller scale, more occlusion, identity confusion—plus head-mounted imaging constraints. Cortical-surface calcium imaging remains particularly challenging in freely moving, socially interacting animals.
-            </p>
-            
-            <p>
-                <strong>This work:</strong> We combine six-camera sDANNCE-style tracking with Miniscope V4 one-photon imaging through chronic cranial windows, enabling simultaneous neural and behavioral recording during unconstrained social interaction.
-            </p>
-            
-            <p>
-                <strong>Payoff:</strong> Quantitative 3D kinematics paired with stable ΔF/F signals from V1 and PMC/M1 opens the door to naturalistic social neurobehavior studies—asking how visual and motor circuits encode edge distance, partner proximity, and approach/escape dynamics.
-            </p>
-
-            <div class="figure">
-                <!-- TODO: Add system schematic from poster -->
-                <div class="figure-placeholder">
-                    <div class="figure-placeholder-icon">🔬</div>
-                    <p><strong>System Schematic</strong></p>
-                    <p>Extract from poster: 6-camera setup + miniscope + arena diagram</p>
-                </div>
-                <p class="figure-caption">
-                    Recording setup showing six synchronized FLIR cameras at three elevations, automated tether system, and UCLA Miniscope V4 integration.
+            <div class="section-intro">
+                <p>
+                    Understanding how cortical circuits encode social behavior requires simultaneous measurement of neural activity and precise 3D kinematics in freely interacting animals. While social-DANNCE has mapped rich social behavior in rats, mice present additional challenges: smaller scale, more occlusion, identity ambiguity, and the difficulty of head-mounted imaging during natural movement.
+                </p>
+                <p>
+                    We introduce <strong>SocialCa3D</strong>, combining six-camera sDANNCE-style 3D pose tracking with UCLA Miniscope V4 calcium imaging through cranial windows. This enables quantitative 3D kinematics alongside stable ΔF/F recordings from V1 and PMC/M1, opening new possibilities for naturalistic social neurobehavior studies.
                 </p>
             </div>
+
+            <div class="system-overview">
+                <div>
+                    <img src="images/07_arena_setup.png" alt="Physical arena setup with six cameras">
+                </div>
+                <div>
+                    <img src="images/06_sdannce_predictions.png" alt="S-DANNCE 3D keypoint predictions overlaid on camera frames">
+                </div>
+            </div>
+            <p class="figure-caption" style="text-align: center;">Left: Physical recording arena with six synchronized FLIR cameras. Right: S-DANNCE 3D keypoint predictions from multiple viewpoints.</p>
         </div>
     </section>
 
-    <section id="dataset" class="alt-bg">
+    <!-- Dataset -->
+    <section id="dataset">
         <div class="container">
-            <h2>Dataset Overview</h2>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">116</div>
-                    <div class="stat-label">Sessions</div>
+            <h2>Dataset</h2>
+            
+            <p class="section-intro">
+                SocialCa3D spans 116 recording sessions across 50 animals, including both single-animal and social pair configurations, with and without simultaneous neural imaging. Data was collected September 2024 – October 2025.
+            </p>
+            
+            <div class="stats-banner">
+                <div class="stat">
+                    <div class="stat-value">116</div>
+                    <div class="stat-label">Total Recordings</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">~50</div>
-                    <div class="stat-label">Subjects</div>
+                <div class="stat">
+                    <div class="stat-value">50</div>
+                    <div class="stat-label">Unique Animals</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">22h</div>
-                    <div class="stat-label">Video</div>
+                <div class="stat">
+                    <div class="stat-value">22</div>
+                    <div class="stat-label">Recording Hours</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Cameras</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">35</div>
+                <div class="stat">
+                    <div class="stat-value">35</div>
                     <div class="stat-label">Social Sessions</div>
                 </div>
             </div>
 
-            <p>Each session includes raw six-camera videos (30 Hz), 3D center-of-mass trajectories, full-body 3D keypoints, and structured metadata. For neural sessions, we provide motion-corrected calcium traces with ΔF/F normalization and frame-level synchronization to behavior.</p>
+            <div class="figure">
+                <img src="images/04_dataset_overview.png" alt="Dataset breakdown showing behavior-only and miniscope sessions">
+                <p class="figure-caption">
+                    Dataset composition: 67 behavior-only sessions and 49 sessions with simultaneous miniscope recordings.
+                </p>
+            </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Count</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Subjects</td>
-                        <td>~50</td>
-                        <td>Adult male C57BL/6J</td>
-                    </tr>
-                    <tr>
-                        <td>Total sessions</td>
-                        <td>116</td>
-                        <td>~22 hours total</td>
-                    </tr>
-                    <tr>
-                        <td>Behavior-only</td>
-                        <td>67</td>
-                        <td>Multi-camera video + 3D pose</td>
-                    </tr>
-                    <tr>
-                        <td>Neural + behavior</td>
-                        <td>49</td>
-                        <td>Video + pose + Ca²⁺ imaging</td>
-                    </tr>
-                    <tr>
-                        <td>Single-animal</td>
-                        <td>22</td>
-                        <td>Solo exploration sessions</td>
-                    </tr>
-                    <tr>
-                        <td>Social pairs</td>
-                        <td>35</td>
-                        <td>Two-mouse interaction sessions</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="coming-soon">
+                <div class="coming-soon-title">Dataset Release</div>
+                <p>The full dataset will be publicly available alongside our forthcoming benchmarking paper.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neural Data -->
+    <section id="neural">
+        <div class="container">
+            <h2>Neural Recordings</h2>
+            
+            <p class="section-intro">
+                Calcium imaging from layer 2/3 of primary visual cortex (V1) using AAV1-hSyn-Soma-jGCaMP8s. ROI extraction and ΔF/F computation via a customized MiniAn-based pipeline with optimized parameters for capturing neuronal signals through cranial windows.
+            </p>
 
             <div class="figure">
-                <!-- TODO: Add arena/behavior figure from poster -->
-                <div class="figure-placeholder">
-                    <div class="figure-placeholder-icon">🐭</div>
-                    <p><strong>Arena & Behavior</strong></p>
-                    <p>Extract from poster: Arena photos + spatial occupancy heatmaps + trajectory examples</p>
-                </div>
+                <img src="images/02_calcium_traces.png" alt="Example calcium imaging data showing ROI extraction and ΔF/F traces">
                 <p class="figure-caption">
-                    The 1 m circular arena enables long-range trajectories and rich turning patterns. Spatial occupancy maps show exploration patterns for individual mice and co-occupancy during social sessions.
+                    Left: Field of view from primary visual cortex with extracted ROIs. Right: ΔF/F traces from individual neurons across a ~7 minute recording session.
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="pipeline">
+    <!-- Behavioral Data -->
+    <section id="behavior">
         <div class="container">
-            <h2>BBOP Pipeline</h2>
+            <h2>Behavioral Data</h2>
             
-            <p>
-                The Bryan Building Open Field Pipeline (BBOP) handles acquisition, synchronization, pose estimation, and neural preprocessing with automated quality control and structured logging.
+            <p class="section-intro">
+                3D pose estimation via sDANNCE provides full-body keypoint tracking for both animals during social interactions. Center-of-mass trajectories and inter-animal distance metrics enable automated detection of social events.
             </p>
 
             <div class="figure">
-                <!-- TODO: Add pipeline flowchart from poster -->
-                <div class="figure-placeholder">
-                    <div class="figure-placeholder-icon">⚙️</div>
-                    <p><strong>Pipeline Flowchart</strong></p>
-                    <p>Extract from poster: BBOP pipeline diagram showing Scan → Filter → Execute stages</p>
-                </div>
+                <img src="images/05_interanimal_distance.png" alt="Inter-animal distance over time with detected social events and COM trajectories">
+                <p class="figure-caption">
+                    Left: Inter-animal distance over time with detected close-proximity events highlighted. Right: Center-of-mass trajectories color-coded by event.
+                </p>
             </div>
 
-            <h3>Pipeline Highlights</h3>
-            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                <li><strong>Scan:</strong> Flags processing status across all recordings</li>
-                <li><strong>Filter:</strong> Selects recordings for specific pipeline stages</li>
-                <li><strong>Execute:</strong> Sync → Predict → Align workflow with parallel processing</li>
-            </ul>
-
-            <h3 style="margin-top: 2rem;">Data Organization</h3>
-
-            <div class="directory-tree">
-<span class="folder">dataset_root/</span>
-├── <span class="folder">beh/</span>                     <span class="comment"># behavior-only sessions</span>
-│   └── <span class="folder">rec_path/</span>
-│       ├── <span class="folder">metadata/</span>        <span class="comment"># session metadata, frame mappings</span>
-│       └── <span class="folder">annotations/</span>     <span class="comment"># com3d.mat, pose3d_mouse*.mat</span>
-└── <span class="folder">mini/</span>                    <span class="comment"># miniscope sessions</span>
-    ├── <span class="folder">single/</span>              <span class="comment"># single-animal recordings</span>
-    └── <span class="folder">social/</span>              <span class="comment"># social pair recordings</span>
-        └── <span class="folder">rec_path/</span>
-            ├── <span class="folder">miniscope/</span>
-            │   ├── <span class="file">miniscope.nc</span>       <span class="comment"># motion-corrected Ca²⁺ data</span>
-            │   └── <span class="file">timeStamps.csv</span>     <span class="comment"># frame timestamps</span>
-            ├── <span class="folder">metadata/</span>
-            │   └── <span class="file">frame_mapping.json</span> <span class="comment"># miniscope ↔ camera mapping</span>
-            └── <span class="folder">annotations/</span>
-                ├── <span class="file">pose3d_mouse1.mat</span>  <span class="comment"># 3D keypoints per mouse</span>
-                └── <span class="file">com3d.mat</span>          <span class="comment"># center-of-mass trajectories</span>
+            <div class="figure">
+                <img src="images/poster_thumbnail.png" alt="Unsupervised behavior clusters from 3D pose embeddings">
+                <p class="figure-caption">
+                    Unsupervised behavioral clustering from 3D pose embeddings reveals distinct behavioral states including locomotion, grooming, rearing, sniffing, and idle periods.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="methods" class="alt-bg">
-        <div class="container">
-            <h2>Methods</h2>
-
-            <div class="methods-grid">
-                <div class="method-card">
-                    <h3>🧬 Viral Targeting</h3>
-                    <p>
-                        AAV1-hSyn-Soma-jGCaMP8s injected into layer 2/3 of V1 (AP −3.5, ML 2.5, DV 0.25 mm) or M1/PMC. Animals recovered 4–5 weeks before window construction.
-                    </p>
-                </div>
-                <div class="method-card">
-                    <h3>🔬 Cranial Windows</h3>
-                    <p>
-                        ~1 mm diameter window over injection site, sealed with glass coverslip and dental cement. UCLA Miniscope V4 baseplate aligned and fixed after recovery.
-                    </p>
-                </div>
-                <div class="method-card">
-                    <h3>📹 Multi-Camera Recording</h3>
-                    <p>
-                        Six FLIR ORX-10G cameras at 30 Hz via 10 GigE. Three vertical elevations with opposing camera pairs maximize coverage and reduce occlusions.
-                    </p>
-                </div>
-                <div class="method-card">
-                    <h3>🔗 Synchronization</h3>
-                    <p>
-                        Hardware trigger + LED brightness protocol. Auxiliary webcam captures arena lights and miniscope LED flicker for cross-timebase alignment.
-                    </p>
-                </div>
-                <div class="method-card">
-                    <h3>🦴 3D Pose Estimation</h3>
-                    <p>
-                        sDANNCE predicts 3D keypoints from volumetric reconstructions. Automated QC flags sessions with trajectory artifacts or identity swaps.
-                    </p>
-                </div>
-                <div class="method-card">
-                    <h3>🧠 Ca²⁺ Preprocessing</h3>
-                    <p>
-                        Minian/CNMF-based pipeline: motion correction, source extraction, ΔF/F with percentile baseline. Optional cross-session ROI matching.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="results">
+    <!-- Aligned Data -->
+    <section id="aligned">
         <div class="container">
             <h2>Aligned Neural-Behavioral Data</h2>
             
-            <p>
-                With synchronized 3D pose and calcium imaging, we can analyze neural activity in the context of precise spatial and social variables. Example analyses include correlating V1 activity with visual cone reconstructions based on estimated eye positions, and clustering unsupervised behavioral motifs from 3D kinematics.
+            <p class="section-intro">
+                Frame-level synchronization between calcium imaging and 3D pose enables analysis of neural activity in the context of precise spatial and social variables. We can examine how V1 populations respond during specific social events defined by inter-animal distance and body pose.
             </p>
 
             <div class="figure">
-                <!-- TODO: Add aligned data figure from poster -->
-                <div class="figure-placeholder">
-                    <div class="figure-placeholder-icon">📊</div>
-                    <p><strong>Aligned Data Examples</strong></p>
-                    <p>Extract from poster: Neural traces + behavior events + UMAP clusters</p>
-                </div>
+                <img src="images/08_aligned_neural_behavior.png" alt="Aligned neural activity and behavioral variables during social interactions">
                 <p class="figure-caption">
-                    Left: Clustered neuron activity aligned to social interaction events. Right: Unsupervised behavior clusters from 3D pose embeddings, with labels including static, locomotion, and social behaviors.
+                    Top: Clustered neural activity (z-scored) aligned with inter-animal distance. Social interaction events (pink bars) mark periods of close proximity. Bottom: Detailed view of three example social events showing neural activity alongside behavioral variables (distance, snout position, head pitch/yaw).
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="poster" class="alt-bg">
+    <!-- Pipeline -->
+    <section id="pipeline">
         <div class="container">
-            <h2>Posters & Presentations</h2>
+            <h2>Pipeline</h2>
             
-            <ul class="poster-list">
-                <li>
-                    <strong>SfN 2024</strong> — "A Scalable System for Social Neural Imaging: Integrating Multi-animal 3D Pose Tracking and Ca²⁺ Imaging in Freely Interacting Animals"
-                    <br>
-                    <a href="poster_sfn_2024.pdf" target="_blank">Download poster (PDF)</a>
-                </li>
-            </ul>
-
-            <div class="poster-embed">
-                <!-- Option 1: Embedded PDF viewer -->
-                <!-- <iframe src="poster_sfn_2025.pdf" title="SfN 2024 Poster"></iframe> -->
-                
-                <!-- Option 2: Clickable thumbnail (recommended) -->
-                <!-- TODO: Generate a PNG thumbnail of the poster and link to PDF -->
-                <a href="poster_sfn_2024.pdf" target="_blank">
-                    <div class="figure-placeholder" style="aspect-ratio: 42/72; max-width: 400px;">
-                        <div class="figure-placeholder-icon">📄</div>
-                        <p><strong>Click to view poster</strong></p>
-                        <p>SfN 2024 (42" × 72")</p>
-                    </div>
-                </a>
+            <div class="pipeline-container">
+                <div class="pipeline-figure">
+                    <img src="images/03_pipeline_flowchart.png" alt="BBOP processing pipeline flowchart">
+                </div>
+                <div class="pipeline-text">
+                    <p>
+                        The <strong>BBOP</strong> (Bryan Building Open Field Pipeline) provides end-to-end processing from raw multi-camera video and miniscope recordings through synchronized behavioral and neural analysis.
+                    </p>
+                    <p>
+                        Key features include automated camera synchronization, 3D keypoint extraction via sDANNCE, calcium trace extraction via MiniAn, and frame-level alignment between modalities.
+                    </p>
+                    <p>
+                        <a href="https://github.com/gadsfly/BBOP" target="_blank">View documentation and code on GitHub →</a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Poster -->
+    <section id="poster">
+        <div class="container">
+            <h2>Poster</h2>
+            <p>Presented at Society for Neuroscience (SfN) 2025.</p>
+            <a href="poster_sfn_2025.pdf" target="_blank" class="poster-preview">
+                <img src="images/poster_thumbnail.png" alt="SfN 2025 Poster: A Scalable System for Social Neural Imaging">
+            </a>
+            <p class="figure-caption">Click to download full poster (PDF)</p>
+        </div>
+    </section>
+
+    <!-- Citation -->
     <section id="citation">
         <div class="container">
             <h2>Citation</h2>
             
-            <p>If you use this dataset or pipeline in your research, please cite:</p>
+            <p>Paper in preparation. For now, please cite our SfN 2025 poster:</p>
 
             <div class="citation-block">
-                <pre>@article{qi2025social,
+                <button class="copy-btn" onclick="copyBibtex()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                </button>
+                <pre>@misc{qi2025socialca3d,
     author = {Qi, Lingxuan and Zhan, Renzhi and Li, Tianqing and 
               Sabath, Anshuman and Wu, Joshua H. and Dunn, Timothy W.},
     title = {A Scalable System for Social Neural Imaging: Integrating 
              Multi-animal 3D Pose Tracking and Ca²⁺ Imaging in 
              Freely Interacting Animals},
-    journal = {In preparation},
+    howpublished = {Poster presented at Society for Neuroscience (SfN)},
     year = {2025}
 }</pre>
-                <button class="copy-btn" onclick="copyBibtex()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    Copy BibTeX
-                </button>
             </div>
         </div>
     </section>
 
-    <section id="about" class="alt-bg">
-        <div class="container">
-            <h2>About</h2>
-            
-            <div class="about-content">
-                <div>
-                    <p>
-                        This project is part of ongoing work in the <a href="https://dunn.pratt.duke.edu/" target="_blank">Dunn Lab</a> at Duke University. Our goal is to understand how cortical populations in visual and motor areas encode spatial layout, boundary distance, and social interaction structure during unconstrained behavior.
-                    </p>
-                    <p>
-                        The dataset and BBOP pipeline are designed to support studies of naturalistic social behavior, neural encoding of spatial and social variables, and multi-animal pose estimation benchmarks.
-                    </p>
-                </div>
-                
-                <div class="contact-card">
-                    <h3>Contact</h3>
-                    <div class="contact-links">
-                        <a href="mailto:lingxuan.qi@duke.edu">lingxuan.qi@duke.edu</a>
-                        <a href="https://github.com/gadsfly" target="_blank">GitHub</a>
-                        <!-- <a href="https://scholar.google.com/..." target="_blank">Google Scholar</a> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>
-                © 2025 Lingxuan Qi · Duke University · 
-                <a href="https://dunn.pratt.duke.edu/" target="_blank">Dunn Lab</a>
+                © 2025 · <a href="https://www.tdunnlab.org/" target="_blank">t.Dunn Lab</a> · Duke University
             </p>
         </div>
     </footer>
 
     <script>
         function copyBibtex() {
-            const bibtex = `@article{qi2025social,
+            const bibtex = `@misc{qi2025socialca3d,
     author = {Qi, Lingxuan and Zhan, Renzhi and Li, Tianqing and Sabath, Anshuman and Wu, Joshua H. and Dunn, Timothy W.},
     title = {A Scalable System for Social Neural Imaging: Integrating Multi-animal 3D Pose Tracking and Ca²⁺ Imaging in Freely Interacting Animals},
-    journal = {In preparation},
+    howpublished = {Poster presented at Society for Neuroscience (SfN)},
     year = {2025}
 }`;
             navigator.clipboard.writeText(bibtex);
             
             const btn = document.querySelector('.copy-btn');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '✓ Copied!';
+            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
             setTimeout(() => {
-                btn.innerHTML = originalHTML;
+                btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy`;
             }, 2000);
         }
-
-        // Smooth scroll for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
     </script>
+
 </body>
 </html>
