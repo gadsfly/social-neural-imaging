@@ -67,7 +67,7 @@
         }
 
         h2 {
-            font-size: 1.65rem;
+            font-size: 2rem;
             margin-bottom: 1.25rem;
             color: var(--color-text);
         }
@@ -242,7 +242,7 @@
         /* Stats banner */
         .stats-banner {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 1rem;
             background: var(--color-surface);
             border-radius: 12px;
@@ -252,7 +252,7 @@
 
         @media (max-width: 600px) {
             .stats-banner {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -535,11 +535,35 @@
             </div>
 
             <div class="hero-figure">
-                <img src="images/01_system_schematic.png" alt="System schematic: six-camera arena with automated tether and miniscope setup for multi-animal 3D tracking">
-            </div>
-            <p class="hero-caption">Six-camera recording arena with automated tether system and UCLA Miniscope V4 for simultaneous 3D pose tracking and calcium imaging.</p>
-            <div class="hero-figure">
-    <img src="images/side_by_side.gif" alt="Example recording showing synchronized behavioral and neural data">
+        <img src="images/side_by_side.gif" alt="Example recording showing synchronized behavioral and neural data">
+    </div>
+
+        <div class="hero-figure">
+            <img src="images/01_system_schematic.png" alt="System schematic: six-camera arena with automated tether and miniscope setup for multi-animal 3D tracking">
+        </div>
+        <p class="hero-caption">Six-camera recording arena with automated tether system and UCLA Miniscope V4 for simultaneous 3D pose tracking and calcium imaging.</p>
+        <div class="stats-banner">
+        <div class="stat">
+            <div class="stat-value">116</div>
+            <div class="stat-label">Recordings</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">50</div>
+            <div class="stat-label">Animals</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">22</div>
+            <div class="stat-label">Hours</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">35</div>
+            <div class="stat-label">Social Sessions</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">2</div>
+            <div class="stat-label">Brain Regions</div>
+        </div>
+    </div>
 </div>
         </div>
     </section>
@@ -578,24 +602,7 @@
                 SocialCa3D spans 116 recording sessions across 50 animals, including both single-animal and social pair configurations, with and without simultaneous neural imaging. Data was collected September 2024 – October 2025.
             </p>
             
-            <div class="stats-banner">
-                <div class="stat">
-                    <div class="stat-value">116</div>
-                    <div class="stat-label">Total Recordings</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">50</div>
-                    <div class="stat-label">Unique Animals</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">22</div>
-                    <div class="stat-label">Recording Hours</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">35</div>
-                    <div class="stat-label">Social Sessions</div>
-                </div>
-            </div>
+            
 
             <div class="figure">
                 <img src="images/04_dataset_overview.png" alt="Dataset breakdown showing behavior-only and miniscope sessions">
@@ -667,6 +674,18 @@
                 <img src="images/08_aligned_neural_behavior.png" alt="Aligned neural activity and behavioral variables during social interactions">
                 <p class="figure-caption">
                     Top: Clustered neural activity (z-scored) aligned with inter-animal distance. Social interaction events (pink bars) mark periods of close proximity. Bottom: Detailed view of three example social events showing neural activity alongside behavioral variables (distance, snout position, head pitch/yaw).
+                </p>
+            </div>
+            <div class="figure">
+                <img src="images/08_aligned_neural_behavior_2.png" alt="Neural activity aligned to 14 social interaction events">
+                <p class="figure-caption">
+                    Neural activity and behavioral variables aligned to 14 detected social interaction events.
+                </p>
+            </div>
+            <div class="figure">
+                <img src="images/11_pmc_single_animal.png" alt="PMC neural activity aligned with center-of-mass trajectories in single animal">
+                <p class="figure-caption">
+                    PMC single-animal recording: Hierarchically clustered neural activity aligned with center-of-mass trajectories during open-field exploration.
                 </p>
             </div>
         </div>
